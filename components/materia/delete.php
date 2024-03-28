@@ -3,30 +3,29 @@
     header('Content-Type: application/json');
     header('Access-Control-Allow-Methods: POST');
 
-    include_once '../../classes/database.php'
+    include_once '../../classes/database.php';
     include_once '../../models/Materia.php';
 
 	if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-
-		// $db = $db->connect();
-		$db = new Database();
-		$student = new Materia($db);
-
-        $data =  $db->getRecord($querySelectUser);
+		$db = $db->open();
+		$materia = new Materia($db);
 
 		$data = json_decode(file_get_contents("php://input"));
-		$student->id = isset($data->id) ? $data->id : NULL;
+		$materia->id_materia = isset($data->id_materia) ? $data->id_materia : NULL;
 
-		if(! is_null($student->id)) {
-	
-			if($student->delete()) {
-			echo json_encode(array('message' => 'Student deleted'));
+		if(!is_null($materia->id_materia)){
+			// TODO: Comprobar que la materia exista
+			if($materia->delete()) {
+			echo json_encode(array('message' => 'Materia eliminada'));
 			} else {
-			echo json_encode(array('message' => 'Student Not deleted, try again!'));
+			echo json_encode(array('message' => 'Materia no eliminada'));
 			}
 		} else {
-		echo json_encode(array('message' => "Error: Student ID is missing!"));
+		echo json_encode(array('message' => "Error: Indique el ID de la Materia a eliminar"));
 		}
+
+		$db = NULL;
 	} else {
-		echo json_encode(array('message' => "Error: incorrect Method!"));
+		echo json_encode(array('message' => "Error: Delete incorrecto"));
 	}
+?>

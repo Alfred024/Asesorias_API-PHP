@@ -78,5 +78,4 @@ class Materia {
         return FALSE;
     }
 
-
 }

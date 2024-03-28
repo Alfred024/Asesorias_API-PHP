@@ -7,15 +7,11 @@
     include_once '../../models/Materia.php';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-      $db = new Database();
-      $db = $db->connect();
+      $db = $db->open();
 
       $materia = new Materia($db);
 
       $data = json_decode(file_get_contents("php://input"));
-
-      //echo("DATA: ".var_dump($data));
 
       $materia->clave = $data->clave;
       $materia->nombre = $data->nombre;
@@ -26,6 +22,8 @@
       } else {
         echo json_encode(array('message' => 'Materia no creada. Ocurrió un error'));
       }
+
+      $db = NULL;
     } else {
         echo json_encode(array('message' => "Error: Post incorrecto"));
     }

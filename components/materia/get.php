@@ -2,34 +2,30 @@
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
 
-    include_once '../config/Database.php';
-    include_once '../models/Student.php';
+    include_once '../../classes/database.php';
+    include_once '../../models/Materia.php';
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        $db = $db->open();
+        $materia = new Materia($db);
 
-        $db = new Database();
-        $db = $db->connect();
-
-        $student = new Student($db);
-
-        $res = $student->fetchAll();
+        $res = $materia->fetchAll();
         $resCount = $res->rowCount();
 
         if($resCount > 0) {
-
-            $students = array();
+            $materias = array();
 
             while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-
                 extract($row);
-                array_push($students, array( 'id' => $id, 'name' => $name, 'address' => $address, 'age' => $age));
+                array_push($materias, array( 'id_materia' => $id_materia, 'nombre' => $nombre, 'clave' => $clave, 'grupo' => $grupo));
             }
             
-            echo json_encode($students);
-
+            echo json_encode($materias);
         } else {
             echo json_encode(array('message' => "No records found!"));
         }
     } else {
         echo json_encode(array('message' => "Error: incorrect Method!"));
     }
+
+?>
