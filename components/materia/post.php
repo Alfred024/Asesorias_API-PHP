@@ -18,13 +18,13 @@
       $materia->grupo = $data->grupo;
     
       if($materia->postData()) {
-        echo json_encode(array('message' => 'Materia creada'));
+        echo json_encode(array('Mensaje' => 'Materia creada'));
       } else {
-        echo json_encode(array('message' => 'Materia no creada. Ocurrió un error'));
+        echo json_encode(array('Mensaje' => 'Materia no creada. Ocurrió un error'));
       }
 
       $db = NULL;
     } else {
-        echo json_encode(array('message' => "Error: Post incorrecto"));
+        echo json_encode(array('Mensaje' => "Código de estado 400: Mala petición"));
     }
 ?>

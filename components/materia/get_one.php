@@ -23,15 +23,15 @@
                     'grupo' => $materia->grupo
                 )));
             } else {
-                echo json_encode(array('message' => "No records found!"));
+                echo json_encode(array('Mensaje: ' => "No se encontró la materia con el ID: ".$materia->id_materia));
             }
         } else {
-            echo json_encode(array('message' => "Error: Materia ID is missing!"));
+            echo json_encode(array('Mensaje: ' => "Por favor. Especifique el ID de la materia a buscar"));
         }
 
         $db = NULL;
     } else {
-        echo json_encode(array('message' => "Error: incorrect Method!"));
+        echo json_encode(array('Mensaje: ' => "Código de estado 400: Mala petición"));
     }
 
 ?>

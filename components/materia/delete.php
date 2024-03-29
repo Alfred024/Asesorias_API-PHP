@@ -16,16 +16,16 @@
 		if(!is_null($materia->id_materia)){
 			// TODO: Comprobar que la materia exista
 			if($materia->delete()) {
-			echo json_encode(array('message' => 'Materia eliminada'));
+			echo json_encode(array('Mensaje' => 'Materia eliminada'));
 			} else {
-			echo json_encode(array('message' => 'Materia no eliminada'));
+			echo json_encode(array('Mensaje' => 'Materia no eliminada'));
 			}
 		} else {
-		echo json_encode(array('message' => "Error: Indique el ID de la Materia a eliminar"));
+		echo json_encode(array('Mensaje' => "Error: Indique el ID de la Materia a eliminar"));
 		}
 
 		$db = NULL;
 	} else {
-		echo json_encode(array('message' => "Error: Delete incorrecto"));
+		echo json_encode(array('Mensaje' => "Código de estado 400: Mala petición"));
 	}
 ?>

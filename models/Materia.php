@@ -67,6 +67,27 @@ class Materia {
         return FALSE;
     }
 
+    public function patchData($attributes) {
+        $sql = 'UPDATE materia SET ';
+
+        foreach ($attributes as $value) {
+            $sql .= "$value = :$value, ";
+        }
+        $sql = rtrim($sql, ', ');
+        $sql .= ' WHERE id_materia = :id_materia';
+    
+        $statement = $this->connection->prepare($sql);
+        
+        foreach ($attributes as $value) {
+            $statement->bindParam(":".$value, $this->$value);
+        }
+    
+        if ($statement->execute()) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
     public function delete() {
         $statement = $this->connection->prepare('DELETE FROM materia WHERE id_materia = :id_materia');
         $statement->bindParam(':id_materia', $this->id_materia);

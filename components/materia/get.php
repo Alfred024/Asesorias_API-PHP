@@ -22,10 +22,10 @@
             
             echo json_encode($materias);
         } else {
-            echo json_encode(array('message' => "No records found!"));
+            echo json_encode(array('Mensaje: ' => "No hay materias registradas."));
         }
     } else {
-        echo json_encode(array('message' => "Error: incorrect Method!"));
+        echo json_encode(array('Mensaje: ' => "Código de estado 400: Mala petición"));
     }
 
 ?>
