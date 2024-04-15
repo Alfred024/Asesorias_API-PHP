@@ -68,6 +68,7 @@ class Materia {
     }
 
     public function patchData($attributes) {
+        // return var_dump($attributes);
         $sql = 'UPDATE materia SET ';
 
         foreach ($attributes as $value) {

@@ -17,6 +17,7 @@
       $usuario->id_rol = 2;
       //$usuario->id_rol = $data->id_rol;
       $usuario->email = $data->email;
+      $usuario->contrasena = $data->contrasena;
       $usuario->nombres = $data->nombres;
       $usuario->apellido_paterno = $data->apellido_paterno;
       $usuario->apellido_materno = $data->apellido_materno;
